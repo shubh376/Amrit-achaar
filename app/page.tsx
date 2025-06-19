@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Phone, MessageCircle, Star, ChefHatIcon, Leaf, Award, Clock } from "lucide-react"
+import { Phone, MessageCircle, Star, ChefHatIcon, Leaf, Award, Clock, Truck } from "lucide-react"
 import Link from "next/link"
 
 export default function AchaarWebsite() {
@@ -17,6 +17,8 @@ export default function AchaarWebsite() {
       image: "/placeholder.svg?height=300&width=300",
       spiceLevel: "Medium",
       weight: "500g",
+      deliveryTime: "6-10 business days",
+      orderType: "Standard",
     },
     {
       id: 2,
@@ -27,6 +29,8 @@ export default function AchaarWebsite() {
       image: "/placeholder.svg?height=300&width=300",
       spiceLevel: "Mild",
       weight: "500g",
+      deliveryTime: "6-10 business days",
+      orderType: "Standard",
     },
     {
       id: 3,
@@ -37,6 +41,8 @@ export default function AchaarWebsite() {
       image: "/placeholder.svg?height=300&width=300",
       spiceLevel: "Hot",
       weight: "400g",
+      deliveryTime: "6-10 business days",
+      orderType: "Standard",
     },
     {
       id: 4,
@@ -47,6 +53,8 @@ export default function AchaarWebsite() {
       image: "/placeholder.svg?height=300&width=300",
       spiceLevel: "Medium",
       weight: "300g",
+      deliveryTime: "8-15 business days",
+      orderType: "Seasonal",
     },
     {
       id: 5,
@@ -57,6 +65,8 @@ export default function AchaarWebsite() {
       image: "/placeholder.svg?height=300&width=300",
       spiceLevel: "Very Hot",
       weight: "400g",
+      deliveryTime: "8-15 business days",
+      orderType: "Seasonal",
     },
     {
       id: 6,
@@ -66,6 +76,8 @@ export default function AchaarWebsite() {
       image: "/placeholder.svg?height=300&width=300",
       spiceLevel: "Mild",
       weight: "500g",
+      deliveryTime: "8-15 business days",
+      orderType: "Seasonal",
     },
   ]
 
@@ -229,11 +241,32 @@ export default function AchaarWebsite() {
                       </div>
                       <span className="text-sm text-gray-500">{product.weight}</span>
                     </div>
+
+                    {/* Add delivery time information */}
+                    <div className="bg-blue-50 p-3 rounded-lg mb-4 border border-blue-200">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Truck className="h-4 w-4 text-blue-600" />
+                          <span className="text-sm font-medium text-blue-800">Estimated Delivery</span>
+                        </div>
+                        <Badge variant="secondary" className="bg-blue-100 text-blue-800 text-xs">
+                          {product.orderType}
+                        </Badge>
+                      </div>
+                      <p className="text-sm text-blue-700 font-semibold mt-1">{product.deliveryTime}</p>
+                      <p className="text-xs text-gray-600 mt-1">
+                        Fresh made to order •
+                        <Link href="/tat-policy" className="text-blue-600 hover:underline ml-1">
+                          View TAT Policy
+                        </Link>
+                      </p>
+                    </div>
+
                     <Button
                       className="w-full bg-orange-500 hover:bg-orange-600"
                       onClick={() =>
                         window.open(
-                          `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hi! I want to order ${product.name} (${product.price}). Please confirm availability.`)}`,
+                          `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hi! I want to order ${product.name} (${product.price}). Estimated delivery: ${product.deliveryTime}. Please confirm availability.`)}`,
                           "_blank",
                         )
                       }
@@ -336,6 +369,15 @@ export default function AchaarWebsite() {
           </Link>
           <Link className="text-xs hover:underline underline-offset-4 text-gray-500" href="/refund-policy">
             Refund Policy
+          </Link>
+          <Link className="text-xs hover:underline underline-offset-4 text-gray-500" href="/cancellation-policy">
+            Cancellation Policy
+          </Link>
+          <Link className="text-xs hover:underline underline-offset-4 text-gray-500" href="/tat-policy">
+            TAT Policy
+          </Link>
+          <Link className="text-xs hover:underline underline-offset-4 text-gray-500" href="/shipping-policy">
+            Shipping Policy
           </Link>
         </nav>
       </footer>
